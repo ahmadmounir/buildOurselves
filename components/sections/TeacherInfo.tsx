@@ -1,0 +1,67 @@
+import { Award, GraduationCap, MapPin, Users } from "lucide-react";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
+import Image from "next/image";
+import { Badge } from "../ui/badge";
+
+export default function TeacherInfo() {
+  return (
+    <section className="py-20 bg-white animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-16">
+            <Badge variant="secondary" className="w-fit mx-auto bg-[var(--primary-color-2)]/10 text-[var(--primary-color-1)] border-[var(--primary-color-2)]">
+              المعلم
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">نبذة عن الشيخ</h2>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-0 shadow-xl overflow-hidden">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative h-64 md:h-full">
+                  <Image src="/placeholder.svg?height=400&width=400" alt="صورة الشيخ" fill className="object-cover" />
+                </div>
+                <div className="p-8 md:p-12">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--primary-color-1)] mb-4">الشيخ الدكتور محمد ياسر ابوردن</h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    حاصل على درجة الدكتوراه في الشريعة الإسلامية من جامعة الاناضول، وله خبرة تزيد عن 25 عاماً في
+                    التدريس والإرشاد الديني. يُدرّس في أكثر من 5 مساجد حول تركيا ويشرف على تعليم أكثر من 500 طالب
+                    وطالبة.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="flex items-center space-x-2 space-x-reverse">
+                      <GraduationCap className="w-5 h-5 text-[var(--primary-color-2)]" />
+                      <span className="text-sm text-gray-600">دكتوراه في الشريعة</span>
+                    </div>
+                    <div className="flex items-center space-x-2 space-x-reverse">
+                      <Award className="w-5 h-5 text-[var(--primary-color-2)]" />
+                      <span className="text-sm text-gray-600">25+ سنة خبرة</span>
+                    </div>
+                    <div className="flex items-center space-x-2 space-x-reverse">
+                      <MapPin className="w-5 h-5 text-[var(--primary-color-2)]" />
+                      <span className="text-sm text-gray-600">5+ مساجد</span>
+                    </div>
+                    <div className="flex items-center space-x-2 space-x-reverse">
+                      <Users className="w-5 h-5 text-[var(--primary-color-2)]" />
+                      <span className="text-sm text-gray-600">500+ طالب</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button className="bg-[var(--primary-color-1)] hover:bg-[var(--primary-color-2)]">تواصل مع الشيخ</Button>
+                    <Button
+                      variant="outline"
+                      className="border-[var(--primary-color-2)] text-[var(--primary-color-2)] hover:bg-[var(--primary-color-2)] hover:text-white bg-transparent"
+                    >
+                      عرض السيرة الذاتية
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+  )
+}
