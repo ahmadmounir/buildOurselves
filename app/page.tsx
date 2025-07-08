@@ -15,6 +15,7 @@ import LectureSchedule from "@/components/sections/LectureSchedule"
 import Posts from "@/components/sections/Posts"
 import Statistics from "@/components/sections/Statistics"
 
+
 export default function LandingPage() {
   const observerRef = useRef<IntersectionObserver | null>(null)
   const [currentSlide, setCurrentSlide] = useState(0)

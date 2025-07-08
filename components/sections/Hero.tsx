@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import Image from "next/image"
-import logo from "@/public/logo.svg"
+import heroImg from "@/public/images/hero-img.jpg"
 
 export default function Hero({ marginTop }: { marginTop?: string }) {
   return (
@@ -59,9 +59,10 @@ export default function Hero({ marginTop }: { marginTop?: string }) {
               <div className="absolute inset-0 bg-[var(--primary-color-1)] rounded-3xl blur-3xl opacity-20"></div>
               <div className="relative w-full aspect-[4/3] max-w-[700px] mx-auto">
                 <Image
-                  src={logo}
+                  src={heroImg}
                   alt="لوحة تحكم فلنبن انفسنا"
-                  className="object-contain w-full h-full rounded-2xl shadow-2xl"
+                  className="object-cover w-full h-full rounded-2xl shadow-2xl"
+                  loading="lazy"
                 />
               </div>
             </div>

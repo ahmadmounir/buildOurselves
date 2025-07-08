@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
+import shikhImg from "@/public/images/shikh-yaser-childrens.jpg"
 
 export default function TeacherInfo() {
   return (
@@ -19,7 +20,7 @@ export default function TeacherInfo() {
             <Card className="border-0 shadow-xl overflow-hidden">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="relative h-64 md:h-full">
-                  <Image src="/placeholder.svg?height=400&width=400" alt="صورة الشيخ" fill className="object-cover" />
+                  <Image loading="lazy" src={shikhImg} alt="صورة الشيخ" fill className="object-cover" />
                 </div>
                 <div className="p-8 md:p-12">
                   <h3 className="text-2xl md:text-3xl font-bold text-[var(--primary-color-1)] mb-4">الشيخ الدكتور محمد ياسر ابوردن</h3>
