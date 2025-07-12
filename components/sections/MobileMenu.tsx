@@ -4,12 +4,13 @@ import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { useState } from "react"
+import { getWhatsAppLink } from "@/lib/utils"
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div>
+    <div className="relative">
       <Button 
         variant="ghost" 
         size="sm" 
@@ -24,29 +25,47 @@ export function MobileMenu() {
       </Button>
 
       {/* Mobile Menu Dropdown */}
-      <div className={`md:hidden absolute left-0 right-0 top-[100%] bg-white border-t ${isOpen ? 'block' : 'hidden'}`}>
+      <div className={`md:hidden fixed left-0 right-0 top-[86px] bg-white border-t shadow-lg ${isOpen ? 'block' : 'hidden'}`}>
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col space-y-4">
             <Link 
-              href="#features" 
+              href="#teacher" 
               className="link-hover block px-2 py-1"
               onClick={() => setIsOpen(false)}
             >
-              المميزات
+              المعلم
             </Link>
             <Link 
-              href="#testimonials" 
+              href="#statistics" 
               className="link-hover block px-2 py-1"
               onClick={() => setIsOpen(false)}
             >
-              آراء العملاء
+              احصائياتنا
+            </Link>
+            <Link 
+              href="#schedule" 
+              className="link-hover block px-2 py-1"
+              onClick={() => setIsOpen(false)}
+            >
+              جدول الدروس
             </Link>
             <Link 
               href="#posts" 
               className="link-hover block px-2 py-1"
               onClick={() => setIsOpen(false)}
             >
-              المقالات
+              الدروس المسجلة
+            </Link>
+            <Link 
+              href={getWhatsAppLink("السلام عليكم ورحمة الله وبركاته")}
+              className="block px-2 py-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+            >
+              <Button className="w-full bg-[var(--primary-color-1)] hover:bg-[var(--primary-color-2)]">
+                تواصل مع الشيخ
+              </Button>
             </Link>
           </div>
         </nav>

@@ -4,7 +4,7 @@ import { Award, BookOpen, GraduationCap, MapPin } from "lucide-react"
 
 export default function Statistics() {
   return (
-    <section className="py-16 bg-white">
+    <section id="statistics" className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <Badge variant="secondary" className="w-fit mx-auto bg-[var(--primary-color-2)]/10 text-[var(--primary-color-1)] border-[var(--primary-color-2)]">
@@ -32,7 +32,7 @@ export default function Statistics() {
               <div className="w-12 h-12 bg-[var(--primary-color-1)] rounded-lg flex items-center justify-center mb-4">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
-              <CardTitle className="text-3xl font-bold text-[var(--primary-color-1)] mb-2">+500</CardTitle>
+              <CardTitle className="text-3xl font-bold text-[var(--primary-color-1)] mb-2">+300</CardTitle>
               <CardDescription className="text-gray-600">محاضرة ودرس</CardDescription>
             </CardContent>
           </Card>
@@ -43,7 +43,7 @@ export default function Statistics() {
               <div className="w-12 h-12 bg-[var(--primary-color-2)] rounded-lg flex items-center justify-center mb-4">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
-              <CardTitle className="text-3xl font-bold text-[var(--primary-color-1)] mb-2">+15,000</CardTitle>
+              <CardTitle className="text-3xl font-bold text-[var(--primary-color-1)] mb-2">+500</CardTitle>
               <CardDescription className="text-gray-600">طالب وطالبة</CardDescription>
             </CardContent>
           </Card>
@@ -54,7 +54,7 @@ export default function Statistics() {
               <div className="w-12 h-12 bg-[var(--primary-color-1)] rounded-lg flex items-center justify-center mb-4">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
-              <CardTitle className="text-3xl font-bold text-[var(--primary-color-1)] mb-2">+250</CardTitle>
+              <CardTitle className="text-3xl font-bold text-[var(--primary-color-1)] mb-2">+5</CardTitle>
               <CardDescription className="text-gray-600">مسجد نُدرّس فيه</CardDescription>
             </CardContent>
           </Card>

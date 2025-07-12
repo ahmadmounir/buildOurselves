@@ -35,6 +35,7 @@
   .link-hover:hover {
     @apply text-[var(--primary-color-2)];
   }
+
 }
 
 /* RTL Support */
@@ -93,3 +94,32 @@ html {
 .animate-fade-in-left {
   animation: fadeInLeft 0.8s ease-out forwards;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--primary-color-2) !important;
+  background-color: var(--primary-color-2) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  transition: background-color 0.3s !important;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: var(--primary-color-1) !important;
+  color: white !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 12px !important;
+  color: white !important;
+  font-weight: 800 !important;
+}
+
+
+
+

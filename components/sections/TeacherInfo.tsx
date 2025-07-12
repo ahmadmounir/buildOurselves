@@ -4,10 +4,12 @@ import { Card } from "../ui/card";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import shikhImg from "@/public/images/shikh-yaser-childrens.jpg"
+import { getWhatsAppLink } from "@/lib/utils";
+import Link from "next/link";
 
 export default function TeacherInfo() {
   return (
-    <section className="py-20 bg-white animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
+    <section id="teacher" className="py-20 bg-white animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <Badge variant="secondary" className="w-fit mx-auto bg-[var(--primary-color-2)]/10 text-[var(--primary-color-1)] border-[var(--primary-color-2)]">
@@ -23,7 +25,7 @@ export default function TeacherInfo() {
                   <Image loading="lazy" src={shikhImg} alt="صورة الشيخ" fill className="object-cover" />
                 </div>
                 <div className="p-8 md:p-12">
-                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--primary-color-1)] mb-4">الشيخ الدكتور محمد ياسر ابوردن</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--primary-color-1)] mb-4">{process.env.NEXT_PUBLIC_TEACHER_NAME}</h3>
                   <p className="text-gray-600 mb-6 leading-relaxed">
                     حاصل على درجة الدكتوراه في الشريعة الإسلامية من جامعة الاناضول، وله خبرة تزيد عن 25 عاماً في
                     التدريس والإرشاد الديني. يُدرّس في أكثر من 5 مساجد حول تركيا ويشرف على تعليم أكثر من 500 طالب
@@ -50,13 +52,15 @@ export default function TeacherInfo() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <Button className="bg-[var(--primary-color-1)] hover:bg-[var(--primary-color-2)]">تواصل مع الشيخ</Button>
-                    <Button
+                    <Link href={getWhatsAppLink("السلام عليكم ورحمة الله وبركاته")} target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-[var(--primary-color-1)] hover:bg-[var(--primary-color-2)]">تواصل مع الشيخ</Button>
+                    </Link>
+                    {/* <Button
                       variant="outline"
                       className="border-[var(--primary-color-2)] text-[var(--primary-color-2)] hover:bg-[var(--primary-color-2)] hover:text-white bg-transparent"
                     >
                       عرض السيرة الذاتية
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </div>

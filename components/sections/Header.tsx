@@ -3,6 +3,7 @@ import Link from "next/link"
 import logo from "@/public/logo.svg"
 import { Button } from "../ui/button"
 import { MobileMenu } from "./MobileMenu"
+import { getWhatsAppLink } from "@/lib/utils"
 
 export default function Header() {
   return (
@@ -14,19 +15,24 @@ export default function Header() {
           </div>
 
           <nav className="hidden md:flex items-center space-x-8 space-x-reverse">
-            <Link href="#features" className="link-hover">
-              المميزات
+            <Link href="#teacher" className="link-hover">
+              المعلم
             </Link>
-            <Link href="#testimonials" className="link-hover">
-              آراء العملاء
+            <Link href="#statistics" className="link-hover">
+              احصائياتنا
+            </Link>
+            <Link href="#schedule" className="link-hover">
+              جدول الدروس
             </Link>
             <Link href="#posts" className="link-hover">
-              المقالات
+              الدروس المسجلة
             </Link>
           </nav>
 
           <div className="flex items-center space-x-4 space-x-reverse">
-            <Button className="bg-[var(--primary-color-1)] hover:bg-[var(--primary-color-2)]">تواصل مع الشيخ</Button>
+            <Link className="hidden md:block" href={getWhatsAppLink("السلام عليكم ورحمة الله وبركاته")} target="_blank" rel="noopener noreferrer">
+              <Button className="bg-[var(--primary-color-1)] hover:bg-[var(--primary-color-2)]">تواصل مع الشيخ</Button>
+            </Link>
             <MobileMenu />
           </div>
         </div>
