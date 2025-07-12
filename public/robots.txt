@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://build-ourselves.vercel.app
+
+# Sitemaps
+Sitemap: https://build-ourselves.vercel.app/sitemap.xml
