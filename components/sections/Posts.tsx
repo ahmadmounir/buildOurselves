@@ -118,14 +118,15 @@ export default function Posts() {
                     <h3 className="text-xl font-bold text-gray-900 mb-3 truncate">{video.title}</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">{video.viewCount} مشاهدة</span>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="border-[var(--primary-color-1)] text-[var(--primary-color-1)] hover:bg-[var(--primary-color-1)] hover:text-white bg-transparent"
-                        onClick={() => window.open(`https://www.youtube.com/watch?v=${video.id}`, '_blank')}
-                      >
-                        مشاهدة كاملة
-                      </Button>
+                      <Link href={`https://www.youtube.com/watch?v=${video.id}`}>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="border-[var(--primary-color-1)] text-[var(--primary-color-1)] hover:bg-[var(--primary-color-1)] hover:text-white bg-transparent"
+                        >
+                          مشاهدة كاملة
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>
