@@ -15,6 +15,7 @@ export function MobileMenu() {
         variant="ghost" 
         size="sm" 
         className="md:hidden"
+        aria-label="Open links menu"
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (

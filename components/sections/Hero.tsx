@@ -63,6 +63,9 @@ export default function Hero({ marginTop }: { marginTop?: string }) {
                 <Image
                   src={heroImg}
                   alt="صورة تعليمية للشيخ"
+                  priority
+                  fill
+                  fetchPriority="high"
                   className="object-cover w-full h-full rounded-2xl shadow-2xl"
                 />
               </div>
