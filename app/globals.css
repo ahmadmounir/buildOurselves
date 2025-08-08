@@ -76,7 +76,7 @@
 }
 
 .admin-button-primary {
-  @apply bg-[var(--primary-color-1)] text-white  transition-colors duration-200;
+  @apply bg-[var(--primary-color-1)] text-white transition-colors duration-200;
 }
 
 .admin-button-secondary {
@@ -206,6 +206,10 @@ html {
 
 .animate-fade-in-left {
   animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.swiper-wrapper {
+  height: auto !important;
 }
 
 .swiper-button-prev,
