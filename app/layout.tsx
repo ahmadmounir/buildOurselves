@@ -1,13 +1,28 @@
 import type { ReactNode } from "react"
+import type { Metadata } from "next"
+import { Tajawal } from "next/font/google"
+import "./globals.css"
 
-export default function AdminLayout({
+const tajawal = Tajawal({
+  subsets: ["arabic", "latin"],
+  weight: ["200", "300", "400", "500", "700", "800", "900"],
+})
+
+export const metadata: Metadata = {
+  title: "فلنبن انفسنا",
+  description: "منصة خاصة للشيخ محمد ياسر ابوردن لتعليم فقه الدين وتزكية النفس",
+}
+
+export default function RootLayout({
   children,
 }: {
   children: ReactNode
 }) {
   return (
-    <div>
+    <html lang="ar" dir="rtl">
+      <body className={tajawal.className}>
         {children}
-    </div>
+      </body>
+    </html>
   )
 }

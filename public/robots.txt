@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://build-ourselves.vercel.app
+Host: https://build-ourselves.vercel.app/home
 
 # Sitemaps
-Sitemap: https://build-ourselves.vercel.app/sitemap.xml
+Sitemap: https://build-ourselves.vercel.app/home/sitemap.xml
