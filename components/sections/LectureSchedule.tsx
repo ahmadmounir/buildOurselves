@@ -6,6 +6,7 @@ import selcuk from "@/public/images/mosques/selcuk.jpg"
 import bilal from "@/public/images/mosques/bilal.jpg"
 import anadolu from "@/public/images/mosques/anadolu.jpg"
 import hoskur from "@/public/images/mosques/hoskur.png"
+import Link from "next/link"
 
 interface LectureTime {
   start: string
@@ -102,7 +103,7 @@ const lectures: Lecture[] = [
 
 export default function LectureSchedule() {
   return (
-    <section id="schedule" className="py-20 bg-gray-50 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
+    <section id="schedule" className="py-20 bg-gray-50 animate-on-scroll">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-16">
           <Badge variant="secondary" className="w-fit mx-auto bg-[var(--primary-color-2)]/10 text-[var(--primary-color-1)] border-[var(--primary-color-2)]">
@@ -110,17 +111,19 @@ export default function LectureSchedule() {
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">المحاضرات القادمة</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            تابع جدول المحاضرات والدروس القادمة في المساجد المختلفة واحجز مكانك
+            تابع جدول المحاضرات والدروس القادمة في المساجد المختلفة ونورنا بحضورك 
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto space-y-8">
           {lectures.map((lecture, index) => (
-            <div
+            <Link
               key={lecture.id}
-              className={`flex flex-col md:flex-row items-stretch gap-8 cursor-pointer group animate-on-scroll translate-x-10 transition-all duration-1000 ease-out delay-${index * 100}`}
-              onClick={() => window.open(`${lecture.mapLocation}`, "_blank")}
-            > 
+              className={`flex flex-col md:flex-row items-stretch gap-8 cursor-pointer group animate-on-scroll translate-x-10`}
+              href={lecture.mapLocation}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {index % 2 === 0 ? (
                 <>
                   <div className="md:w-1/2 order-2 md:order-1">
@@ -140,7 +143,7 @@ export default function LectureSchedule() {
                   </div>
                 </>
               )}
-            </div>
+            </Link>
           ))}
         </div>
 

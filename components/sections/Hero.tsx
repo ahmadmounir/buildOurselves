@@ -8,7 +8,7 @@ import heroImg from "@/public/images/hero-img.jpg"
 
 export default function Hero({ marginTop }: { marginTop?: string }) {
   return (
-    <section className={`py-20 lg:py-32 bg-gray-50 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out ${marginTop}`}>
+    <section className={`py-20 lg:py-32 bg-gray-50 animate-on-scroll ${marginTop}`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -57,7 +57,7 @@ export default function Hero({ marginTop }: { marginTop?: string }) {
               </div>
             </div>
 
-            <div className="relative w-full max-w-full animate-on-scroll opacity-0 translate-x-10 transition-all duration-1000 ease-out delay-300">
+            <div className="relative w-full max-w-full animate-on-scroll translate-x-10">
               <div className="absolute inset-0 bg-[var(--primary-color-1)] rounded-3xl blur-3xl opacity-20"></div>
               <div className="relative w-full aspect-[4/3] max-w-[700px] mx-auto">
                 <Image

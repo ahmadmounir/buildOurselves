@@ -1,3 +1,4 @@
+"use client"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -47,7 +48,7 @@ export default function Posts() {
   }
 
   return (
-    <section id="posts" className="py-20 bg-white animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
+    <section id="posts" className="py-20 bg-white animate-on-scroll">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-8">
           <Badge variant="secondary" className="w-fit mx-auto bg-[var(--primary-color-2)]/10 text-[var(--primary-color-1)] border-[var(--primary-color-2)]">

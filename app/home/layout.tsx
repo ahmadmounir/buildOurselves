@@ -1,8 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Tajawal } from "next/font/google"
-import "./globals.css"
+import "../globals.css"
 import Script from "next/script"
+import Header from "@/components/sections/Header"
+import Footer from "@/components/sections/Footer"
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -35,8 +37,15 @@ export default function RootLayout({
             gtag('config', 'G-M5E5GN5E2R');
           `}
         </Script>
+        
+        {/* Scroll Animations Fallback */}
+        <Script src="/scroll-animations.js" strategy="afterInteractive" />
       </head>
-      <body className={tajawal.className}>{children}</body>
+      <body className={tajawal.className}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }

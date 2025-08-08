@@ -45,7 +45,7 @@ export default function AdSlider() {
   }, [currentSlide])
 
   return (
-    <section className="py-16 bg-gray-50 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
+    <section className="py-16 bg-gray-50 animate-on-scroll">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
             <Badge variant="secondary" className="w-fit mx-auto bg-[var(--primary-color-2)]/10 text-[var(--primary-color-1)] border-[var(--primary-color-2)]">
