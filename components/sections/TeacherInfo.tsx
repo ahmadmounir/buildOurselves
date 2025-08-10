@@ -19,7 +19,7 @@ export default function TeacherInfo() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-xl overflow-hidden">
+            <Card className="border-0 py-0 shadow-xl overflow-hidden">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="relative h-64 md:h-full">
                   <Image loading="lazy" src={shikhImg} alt="صورة الشيخ" fill className="object-cover" />
@@ -27,9 +27,7 @@ export default function TeacherInfo() {
                 <div className="p-8 md:p-12">
                   <h3 className="text-2xl md:text-3xl font-bold text-[var(--primary-color-1)] mb-4">{process.env.NEXT_PUBLIC_TEACHER_NAME}</h3>
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    حاصل على درجة الدكتوراه في الشريعة الإسلامية من جامعة الاناضول، وله خبرة تزيد عن 25 عاماً في
-                    التدريس والإرشاد الديني. يُدرّس في أكثر من 5 مساجد حول تركيا ويشرف على تعليم أكثر من 500 طالب
-                    وطالبة.
+                    إمام وخطيب وداعية إسلامي، حاصل على ماجستير في الدعوة الإسلامية ويحضّر حاليًا لنيل درجة الدكتوراه. أتمَّ مسيرة دعوية وتربوية غنية في المساجد والمدارس والمعاهد الشرعية.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mb-6">
