@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
-import shikhImg from "@/public/images/shikh-yaser-childrens.jpg"
+import shikhImg from "@/public/images/yaser.jpg"
 import { getWhatsAppLink } from "@/lib/utils";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ export default function TeacherInfo() {
                 <div className="p-8 md:p-12">
                   <h3 className="text-2xl md:text-3xl font-bold text-[var(--primary-color-1)] mb-4">{process.env.NEXT_PUBLIC_TEACHER_NAME}</h3>
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    إمام وخطيب وداعية إسلامي، حاصل على ماجستير في الدعوة الإسلامية ويحضّر حاليًا لنيل درجة الدكتوراه. أتمَّ مسيرة دعوية وتربوية غنية في المساجد والمدارس والمعاهد الشرعية.
+                    إمام وخطيب وداعية إسلامي، حاصل على الدكتوراه في الدعوة الإسلامية من جامعة مينيسوتا. أتمَّ مسيرة دعوية وتربوية غنية في المساجد والمدارس والمعاهد الشرعية.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mb-6">
@@ -53,12 +53,11 @@ export default function TeacherInfo() {
                     <Link href={getWhatsAppLink("السلام عليكم ورحمة الله وبركاته")} target="_blank" rel="noopener noreferrer">
                       <Button className="bg-[var(--primary-color-1)] hover:bg-[var(--primary-color-2)]">تواصل مع الشيخ</Button>
                     </Link>
-                    {/* <Button
-                      variant="outline"
-                      className="border-[var(--primary-color-2)] text-[var(--primary-color-2)] hover:bg-[var(--primary-color-2)] hover:text-white bg-transparent"
-                    >
-                      عرض السيرة الذاتية
-                    </Button> */}
+                    <Link href="cv.pdf" target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-transparent border border-[var(--primary-color-2)] text-[var(--primary-color-2)] hover:bg-[var(--primary-color-2)] hover:text-white">
+                        عرض السيرة الذاتية
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
