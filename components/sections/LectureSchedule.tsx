@@ -2,26 +2,26 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
-import selcuk from "@/public/images/mosques/selcuk.jpg"
-import bilal from "@/public/images/mosques/bilal.jpg"
-import anadolu from "@/public/images/mosques/anadolu.jpg"
-import hoskur from "@/public/images/mosques/hoskur.png"
 import Link from "next/link"
+import { LectureService } from "@/lib/lectureService"
+import { 
+  Lecture as LectureModel, 
+  lectureTypeLabels, 
+  recurrenceTypeLabels, 
+  dayOfWeekLabels 
+} from "@/models/lecture"
 
-interface LectureTime {
-  start: string
-  end: string
-}
-
-
-interface Lecture {
+interface LectureDisplayData {
   id: number
   type: string
   title: string
   date: string
   day: string
   city: string
-  time: LectureTime
+  time: {
+    start: string
+    end: string
+  }
   location: string
   mapLocation: string
   description: string
@@ -29,79 +29,76 @@ interface Lecture {
   imageAlt: string
 }
 
-// Mock data for lectures
-const lectures: Lecture[] = [
-  {
-    id: 1,
-    type: "تزكية",
-    title: "الادب في طلب العلم",
-    date: "اسبوعيا",
-    day: "الاثنين",
-    city: "اسطنبول",
-    time: {
-      start: "9:00 مساءً",
-      end: "10:30 مساءً"
-    },
-    location: "جامع سلجوق",
-    mapLocation: "https://maps.app.goo.gl/Wo5NZiGmpq8brJan7?g_st=ic",
-    description: "درس عن الادب في طلب العلم",
-    image: selcuk.src,
-    imageAlt: "جامع سلجوق",
-  },
-  {
-    id: 2,
-    type: "درس",
-    title: "علم الطهارة - الباب الثاني",
-    date: "اسبوعيا",
-    day: "الثلاثاء",
-    city: "اسطنبول",
-    time: {
-      start: "9:00 مساءً",
-      end: "10:30 مساءً"
-    },
-    location: "جامع بلال الحبشي",
-    mapLocation: "https://maps.app.goo.gl/eJXSooZt13vfcAAy9",
-    description: "درس عن علم الطهارة - الباب الثاني",
-    image: bilal.src,
-    imageAlt: "جامع بلال الحبشي",
-  },
-  {
-    id: 3,
-    type: "درس",
-    title: "تزكية النفس",
-    date: "اسبوعيا",
-    day: "الجمعة",
-    city: "اسطنبول",
-    time: {
-      start: "9:00 مساءً",
-      end: "10:30 مساءً"
-    },
-    location: "جامع اناضول فاتح ",
-    mapLocation: "https://maps.app.goo.gl/eJXSooZt13vfcAAy9",
-    description: "درس عن تزكية النفس",
-    image: anadolu.src,
-    imageAlt: "جامع اناضول فاتح",
-  },
-  {
-    id: 4,
-    type: "درس",
-    title: "التفسير المبسط للقرآن الكريم",
-    date: "شهريا",
-    day: "الاحد",
-    city: "غازي عنتاب",
-    time: {
-      start: "9:00 مساءً",
-      end: "10:30 مساءً"
-    },
-    location: "جامع هوشكور",
-    mapLocation: "https://maps.app.goo.gl/g8SksjWferzTVDc89?g_st=awb",
-    description: "درس عن التفسير المبسط للقرآن الكريم",
-    image: hoskur.src,
-    imageAlt: "جامع هوشكور",
-  }
-]
+// Helper function to format time from 24h to 12h with Arabic AM/PM
+const formatTime = (time: string): string => {
+  const [hours, minutes] = time.split(':').map(Number);
+  const period = hours >= 12 ? 'مساءً' : 'صباحً';
+  const displayHours = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
+  return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+};
 
-export default function LectureSchedule() {
+// Helper function to convert server data to display format
+const convertLectureToDisplay = (lecture: LectureModel): LectureDisplayData => {
+  return {
+    id: lecture.id || 0,
+    type: lectureTypeLabels[lecture.type],
+    title: lecture.title,
+    date: recurrenceTypeLabels[lecture.recurrence],
+    day: dayOfWeekLabels[lecture.day_of_week],
+    city: lecture.city,
+    time: {
+      start: formatTime(lecture.time_start),
+      end: formatTime(lecture.time_end)
+    },
+    location: lecture.mosque_name,
+    mapLocation: lecture.location_url,
+    description: lecture.description || '',
+    image: lecture.image_link,
+    imageAlt: lecture.mosque_name,
+  };
+};
+
+export default async function LectureSchedule() {
+  let lectures: LectureDisplayData[] = [];
+  let error: string | null = null;
+
+  try {
+    const lecturesData = await LectureService.getAllLectures();
+    lectures = lecturesData.map(convertLectureToDisplay);
+  } catch (err) {
+    error = err instanceof Error ? err.message : 'Failed to fetch lectures';
+    console.error('Error fetching lectures:', err);
+  }
+
+  if (error) {
+    return (
+      <section id="schedule" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-red-600">خطأ في تحميل المحاضرات: {error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (lectures.length === 0) {
+    return (
+      <section id="schedule" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-16">
+            <Badge variant="secondary" className="w-fit mx-auto bg-[var(--primary-color-2)]/10 text-[var(--primary-color-1)] border-[var(--primary-color-2)]">
+              جدول المحاضرات
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">المحاضرات القادمة</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              لا توجد محاضرات متاحة حالياً
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section id="schedule" className="py-20 bg-gray-50 animate-on-scroll">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -162,7 +159,7 @@ export default function LectureSchedule() {
 }
 
 // Component for the lecture card
-function LectureCard({ lecture }: { lecture: Lecture }) {
+function LectureCard({ lecture }: { lecture: LectureDisplayData }) {
   return (
     <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 bg-white">
       <CardContent className="p-6">
@@ -209,7 +206,7 @@ function LectureCard({ lecture }: { lecture: Lecture }) {
 }
 
 // Component for the lecture image
-function LectureImage({ lecture }: { lecture: Lecture }) {
+function LectureImage({ lecture }: { lecture: LectureDisplayData }) {
   return (
     <div className="relative h-full min-h-[300px] w-full">
       <Image

@@ -1,33 +1,54 @@
 'use client'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Eye, MessageSquare, Building2 } from "lucide-react"
+import { MessageSquare, Building2 } from "lucide-react"
+import { useEffect, useState } from "react"
+import { LectureService } from "@/lib/lectureService"
 
 
-const stats = [
-    {
-      title: "عدد الزيارات",
-      value: "12,543",
-      description: "زيارة هذا الشهر",
-      icon: Eye,
-      change: "+12%",
-    },
+export default function DashboardPage() {
+  const [stats, setStats] = useState([
     {
       title: "الرسائل",
-      value: "89",
+      value: "-",
       description: "رسالة جديدة",
       icon: MessageSquare,
-      change: "+5%",
     },
     {
       title: "المساجد",
-      value: "24",
+      value: "0",
       description: "مسجد مسجل",
       icon: Building2,
-      change: "+2",
     }
-  ]
+  ]);
 
-export default function DashboardPage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const statistics = await LectureService.getStatistics();
+        
+        setStats(prevStats => 
+          prevStats.map(stat => {
+            if (stat.title === "المساجد") {
+              return {
+                ...stat,
+                value: statistics.uniqueMosques.toString(),
+                description: `مسجد مسجل`
+              };
+            }
+            return stat;
+          })
+        );
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -36,7 +57,7 @@ export default function DashboardPage() {
         <p className="text-muted-foreground">نظرة عامة على إحصائيات الموقع</p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2">
         {stats.map((stat) => (
           <Card className="py-4" key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -44,9 +65,14 @@ export default function DashboardPage() {
               <stat.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
+              <div className="text-2xl font-bold">
+                {loading && (stat.title === "المساجد" || stat.title === "المحاضرات") ? (
+                  <div className="animate-pulse bg-gray-200 h-6 w-16 rounded"></div>
+                ) : (
+                  stat.value
+                )}
+              </div>
               <p className="text-xs text-muted-foreground">{stat.description}</p>
-              <div className="text-xs text-green-600 mt-1">{stat.change}</div>
             </CardContent>
           </Card>
         ))}
