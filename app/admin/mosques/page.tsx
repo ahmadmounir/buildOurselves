@@ -82,6 +82,24 @@ export default function MosquesPage() {
     }
   }
 
+  // Revalidate cache after operations
+  const revalidateCache = async () => {
+    try {
+      await fetch('/api/revalidate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          path: '/home',
+          tag: 'lectures'
+        }),
+      });
+    } catch (error) {
+      console.error('Failed to revalidate cache:', error);
+    }
+  }
+
   // Load lectures on component mount
   useEffect(() => {
     loadLectures()
@@ -186,6 +204,7 @@ export default function MosquesPage() {
       }
       
       await loadLectures()
+      await revalidateCache() // إعادة تحديث الـ cache
       closeDialog()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'حدث خطأ في حفظ المحاضرة')
@@ -200,6 +219,7 @@ export default function MosquesPage() {
     try {
       await LectureService.deleteLecture(lecture.id!)
       await loadLectures()
+      await revalidateCache() // إعادة تحديث الـ cache
     } catch (err) {
       setError(err instanceof Error ? err.message : 'حدث خطأ في حذف المحاضرة')
     }

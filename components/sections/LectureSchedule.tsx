@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Calendar, Clock, MapPin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { LectureService } from "@/lib/lectureService"
 import { 
   Lecture as LectureModel, 
   lectureTypeLabels, 
@@ -58,12 +57,36 @@ const convertLectureToDisplay = (lecture: LectureModel): LectureDisplayData => {
   };
 };
 
+// Fetch data from API route
+async function getLectures(): Promise<LectureModel[]> {
+  // In production, use the deployment URL, otherwise use localhost
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
+                 (process.env.NODE_ENV === 'production' 
+                   ? `https://${process.env.VERCEL_URL}` 
+                   : 'http://localhost:3000');
+                   
+  const res = await fetch(`${baseUrl}/api/lectures`, {
+    cache: 'no-store',
+    next: { 
+      revalidate: 0,
+      tags: ['lectures']
+    }
+  });
+  
+  if (!res.ok) {
+    throw new Error('Failed to fetch lectures');
+  }
+  
+  const data = await res.json();
+  return data.lectures;
+}
+
 export default async function LectureSchedule() {
   let lectures: LectureDisplayData[] = [];
   let error: string | null = null;
 
   try {
-    const lecturesData = await LectureService.getAllLectures();
+    const lecturesData = await getLectures();
     lectures = lecturesData.map(convertLectureToDisplay);
   } catch (err) {
     error = err instanceof Error ? err.message : 'Failed to fetch lectures';
