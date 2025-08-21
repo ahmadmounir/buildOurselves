@@ -69,13 +69,10 @@ export default function MosquesPage() {
   })
 
   // Load lectures on component mount
-  useEffect(() => {
-    loadLectures()
-  }, [])
-
   const loadLectures = async () => {
     try {
       setLoading(true)
+      setError(null) // Clear any previous errors
       const data = await LectureService.getAllLectures()
       setLectures(data)
     } catch (err) {
@@ -84,6 +81,11 @@ export default function MosquesPage() {
       setLoading(false)
     }
   }
+
+  // Load lectures on component mount
+  useEffect(() => {
+    loadLectures()
+  }, [])
 
   const resetForm = () => {
     setFormData({
