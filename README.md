@@ -128,7 +128,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-For support, email ahmad.mounir@example.com or create an issue in this repository.
+For support, email ahmadmallak2004@gmail.com or create an issue in this repository.
 
 ---
 
@@ -227,4 +227,4 @@ Bu proje MIT Lisansı altında lisanslanmıştır - detaylar için [LICENSE](LIC
 
 ## 🆘 Destek
 
-Destek için ahmad.mounir@example.com adresine e-posta gönderin veya bu repoda bir issue oluşturun.
+Destek için ahmadmallak2004@gmail.com adresine e-posta gönderin veya bu repoda bir issue oluşturun.
